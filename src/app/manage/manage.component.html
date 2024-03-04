@@ -1,0 +1,87 @@
+<!-- <div class="conatiner-fluid"> -->
+<div class="d-flex justify-content-left ml-2 mb-3 mt-2">
+  <button
+    class="text-white bg-green-800 hover:bg-green-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-1.5"
+    (click)="openModel()">
+    <mat-icon class="mt-1">add</mat-icon>
+    <span class="relative bottom-1">Add New Record</span>
+  </button>
+</div>
+<div class="mt-2">
+  <ul class="ml-2 mb-3 flex list-none flex-row flex-wrap" id="myTab" role="tablist" data-te-nav-ref>
+    <li class="me-2" role="presentation" (click)="tabClick('country')">
+      <button [class.active]="title === 'country'" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100  rounded-lg text-sm py-2.5 px-2  mb-2" id="country-tab" type="button"
+        data-te-toggle="pill" data-te-target="#country" data-te-nav-active role="tab" aria-controls="country"
+        aria-selected="true"> Country </button>
+    </li>
+    <li class="me-2" role="presentation" (click)="tabClick('platform')">
+      <button [class.active]="title === 'platform'"  class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-sm py-2.5 mb-2" id="platform-tab"
+        type="button" role="tab" aria-controls="platform" aria-selected="false" data-te-toggle="pill"
+        data-te-target="#platform"> Platform </button>
+    </li>
+    <li class="me-2" role="presentation" (click)="tabClick('leadscore')">
+      <button [class.active]="title === 'leadscore'"  class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-sm py-2.5  mb-2" id="leadscore-tab"
+        type="button" role="tab" aria-selected="false" aria-controls="leadscore" data-te-toggle="pill"
+        data-te-target="#leadscore"> Lead Score </button>
+    </li>
+    <li class="me-2" role="presentation" (click)="tabClick('conversion')">
+      <button [class.active]="title === 'conversion'" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-sm py-2.5  mb-2" id="conversion-tab"
+        type="button" role="tab" aria-controls="conversion" aria-selected="false" data-te-toggle="pill"
+        data-te-target="#conversion"> Conversion </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="country" role="tabpanel" aria-labelledby="country-tab"
+      data-te-tab-active>
+      <div [innerHTML]="rows"></div>
+    </div>
+    <div class="tab-pane fade" id="platform" role="tabpanel" aria-labelledby="platform-tab">
+      <div [innerHTML]="rows"></div>
+    </div>
+    <div class="tab-pane fade" id="leadscore" role="tabpanel" aria-labelledby="leadscore-tab">
+      <div [innerHTML]="rows"></div>
+    </div>
+    <div class="tab-pane fade" id="conversion" role="tabpanel" aria-labelledby="conversion-tab">
+      <div [innerHTML]="rows"></div>
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="overlay">
+    <div style="display: flex; justify-content: center; align-items: center">
+      <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+    </div>
+  </div>
+
+  <!-- Table  -->
+  <app-table *ngIf="!isLoading" [dataSource]="data" [displayedColumns]="['S.no', 'Title', 'Action']" (deleteRecord)="manageDelete($event)"
+  [isOpen]="isOpen" [title]="title" (closeModal)="isOpen = false"  (viewData)="viewData($event)"></app-table>
+  
+  <!-- custom-modal.component.html -->
+  <div class="fixed inset-0 overflow-y-auto flex items-center justify-center" [class.hidden]="!isOpen">
+    <div class="fixed inset-0 bg-black opacity-50"></div>
+    <div class="bg-white w-full max-w-md p-6 rounded-md shadow-md relative z-0">
+      <div class="mb-4">
+        <form [formGroup]="form">
+          <div class="modal-content">
+            <div class="modal-header mt-2 mb-2 border-b-2	">
+              <h2 class="modal-title message mb-2"> Create {{ title }} </h2>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mt-3" id="title" formControlName="title" placeholder="Enter title" />
+                <div *ngIf="submitted && form.get('title')?.errors">
+                  <div class="text-danger" *ngIf="form.get('title')?.errors?.['required']"> Title is required </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="flex justify-end">
+        <button class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" (click)="closeModal()">Close</button>
+        <button class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 mb-2" [disabled]="form.pristine" (click)="onSubmit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+

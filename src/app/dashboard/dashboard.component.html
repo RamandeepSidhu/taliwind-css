@@ -1,0 +1,317 @@
+<div class="container-fluid w-full px-4">
+  <nav class="relative py-4">
+    <div class="flex flex-wrap items-center justify-between px-4">
+      <div class="flex items-center">
+        <form class="flex items-center">
+          <label for="simple-search" class="sr-only">Search</label>
+          <div class="relative w-full">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input type="text" id="simple-search" (keyup)="applyFilter($event)" placeholder="Search..." #input
+              [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              required="">
+          </div>
+        </form>
+      </div>
+      <!-- Right elements -->
+      <ul class="list-none ml-auto flex flex-row pl-0 md:pl-4" data-te-navbar-nav-ref>
+        <li class="px-2" data-te-nav-item-ref>
+          <button type="button"
+            class="focus:outline-none text-gray-900  bg-white hover:bg-gray-100 border border-gray-300 font-medium rounded-lg text-sm">
+            <mat-form-field>
+              <mat-select [formControl]="toppings" multiple>
+                <mat-option *ngFor="let column of usersTableColumn" [value]="column"
+                  (onSelectionChange)="onChangeColumn($event, column)">{{column?.label}}</mat-option>
+                <button type="button"
+                  class="relative left-14	w-24 text-white bg-purple-700 hover:bg-purple-800 focus:outline-none  font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 inline-flex justify-center"
+                  (click)="disabledColumnField()">Apply</button>
+              </mat-select>
+            </mat-form-field>
+          </button>
+        </li>
+        <li class="px-2" data-te-nav-item-ref>
+          <button type="button"
+            class="focus:outline-none text-white bg-purple-500 hover:bg-purple-400  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            (click)="openManageRecords()">
+            <span>Manage Records</span>
+          </button>
+        </li>
+        <li class="relative px-2" data-te-dropdown-ref>
+          <button
+            class="text-white bg-green-800 hover:bg-green-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-1.5 mt-0 mb-0"
+            (click)="AddNewRow()">
+            <mat-icon class="relative top-1 mr-2 m-0">add</mat-icon>
+            <span class="relative bottom-1">Add New Record</span>
+          </button>
+        </li>
+        <li class="relative px-2" data-te-dropdown-ref data-te-dropdown-alignment="end">
+          <button type="button" (click)="openDialog('0ms', '0ms','logout')"
+            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5">
+            <mat-icon class="relative top-1 mr-2 m-0">logout</mat-icon>
+            <span class="relative bottom-1">Logout</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <section class="overflow-auto">
+    <button *ngIf="selection.hasValue()" (click)="openDialog('0ms', '0ms','remove')" type="button"
+      class="relative left-11 focus:outline-none text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-1.5">{{selection.selected.length}}
+      {{selection.selected.length < 2?'Row':'Rows'}} Delete</button>
+
+      <button mat-raised-button (click)="downloadAsPDF()">Download as PDF</button>
+
+        <form [formGroup]="VOForm" autocomplete="off" class="px-2 pt-2" id="htmlData"> 
+          <ng-container formArrayName="VORows">
+            <table #table mat-table [dataSource]="dataSource" matSort class="overflow-auto" 
+            >
+              <ng-container matColumnDef="action" sticky>
+                <div class="d-flex">
+                  <thead class="uppercase tracking-wider border-b-2 border-t">
+                    <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">
+                      <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                      </mat-checkbox>
+                    </th>
+                  </thead>
+                </div>
+                <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index; let row"
+                  [formGroup]="element">
+                  <div class="flex items-center">
+                    <div class="all-data-removed" *ngIf="!VOForm.get('VORows')?.value[element.index].isNewRow">
+                      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+                      </mat-checkbox>
+                    </div>
+                    <button mat-icon-button class="material-icons app-toolbar-menu save-button"
+                      matTooltip="Add new record" [matTooltipPosition]="'left'"
+                      (click)="addNewRecord(VOForm,element.index)"
+                      *ngIf="!VOForm.get('VORows')?.value[element.index].isEditable && VOForm.get('VORows')?.value[i].isNewRow"
+                      color="accent">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                    <button mat-icon-button class="material-icons app-toolbar-menu save-button"
+                      [matTooltipPosition]="'left'" matTooltip="Save Changes"
+                      (click)="updateClient(VOForm,element.index)"
+                      *ngIf="!VOForm.get('VORows')?.value[element.index].isEditable && !VOForm.get('VORows')?.value[i].isNewRow"
+                      color="primary">
+                      <mat-icon>check_circle</mat-icon>
+                    </button>
+                    <button mat-icon-button class="material-icons app-toolbar-menu cancel-button"
+                      [matTooltipPosition]="'left'" matTooltip="Cancel Changes" color="warn"
+                      (click)="CancelSVO(VOForm,element.index)"
+                      *ngIf="!VOForm.get('VORows')?.value[element.index].isEditable">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button mat-icon-button class="material-icons app-toolbar-menu save-button"
+                      [matTooltipPosition]="'right'" *ngIf="VOForm.get('VORows')?.value[element.index].isEditable"
+                      matTooltip="Edit" color="primary" (click)="EditSVO(VOForm,element.index)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <thead class="uppercase tracking-wider border-b-2 border-t">
+                  <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Name</th>
+                </thead>
+                <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+                  <ng-container *ngIf="VOForm.get('VORows')?.value[element.index].isEditable; else editableModeUrl">
+                <td> {{VOForm.get('VORows')?.value[element.index].name}}</td>
+              </ng-container>
+              <ng-template #editableModeUrl>
+                <mat-form-field [class.outline-appearance]="VOForm.get('VORows')?.value[element.index].isEditable"
+                  [ngClass]="{'edit-mode': !VOForm.get('VORows')?.value[element.index].isEditable, 'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}"
+                  [class.legacy-appearance]="!VOForm.get('VORows')?.value[element.index].isEditable">
+                  <input matInput type="text" formControlName="name"
+                    [readonly]="VOForm.get('VORows')?.value[element.index].isEditable" />
+                </mat-form-field>
+              </ng-template>
+              <mat-error *ngIf="submitted && errorMeessage(VOForm,i,'name','required')">The name field is
+                required</mat-error>
+              </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Email</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field
+                [ngClass]="{'edit-mode': !VOForm.get('VORows')?.value[element.index].isEditable, 'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}"
+                [class.outline-appearance]="VOForm.get('VORows')?.value[element.index].isEditable"
+                [class.legacy-appearance]="!VOForm.get('VORows')?.value[element.index].isEditable">
+                <input matInput type="text" formControlName="email" class="disbled-text"
+                  [readonly]="VOForm.get('VORows')?.value[element.index].isEditable" />
+              </mat-form-field>
+              <mat-error *ngIf="submitted && errorMeessage(VOForm,i,'email','required')">The email field is
+                required</mat-error>
+              <mat-error *ngIf="submitted && errorMeessage(VOForm,i,'email','email')">Invalid email format</mat-error>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="phone">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Phone</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <ng-container *ngIf="VOForm.get('VORows')?.value[element.index].isEditable; else editableModeUrl">
+            <td> {{VOForm.get('VORows')?.value[element.index].phone}}</td>
+          </ng-container>
+          <ng-template #editableModeUrl>
+            <mat-form-field [class.outline-appearance]="VOForm.get('VORows')?.value[element.index].isEditable"
+              [class.legacy-appearance]="!VOForm.get('VORows')?.value[element.index].isEditable">
+              <input matInput type="text" formControlName="phone"
+                [readonly]="VOForm.get('VORows')?.value[element.index].isEditable" />
+            </mat-form-field>
+          </ng-template>
+          </td>
+          </ng-container>
+          <ng-container matColumnDef="linkedin">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="p-4 hidden md:table-cell">Linkedin</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <ng-container *ngIf="VOForm.get('VORows')?.value[element.index].isEditable; else editableMode">
+                <a class="linkedin-link" mat-button [href]="VOForm.get('VORows')?.value[element.index].linkedin"
+                  target="_blank" (click)="onClick($event, VOForm.get('VORows')?.value[element.index].linkedin)">
+                  <span class="shortened-link" [matTooltip]="VOForm.get('VORows')?.value[element.index].linkedin"
+                    [matTooltipPosition]="'right'" style="color:blue">{{
+                    VOForm.get('VORows')?.value[element.index].linkedin }} </span>
+                </a>
+              </ng-container>
+              <ng-template #editableMode>
+                <mat-form-field [class.outline-appearance]="VOForm.get('VORows')?.value[element.index].isEditable"
+                  [ngClass]="{'edit-mode': !VOForm.get('VORows')?.value[element.index].isEditable, 'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}"
+                  [class.legacy-appearance]="!VOForm.get('VORows')?.value[element.index].isEditable">
+                  <input matInput type="text" formControlName="linkedin"
+                    [readonly]="VOForm.get('VORows')?.value[element.index].isEditable" />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && errorMeessage(VOForm,i,'linkedin','pattern')">Invalid Pattern
+                  format</mat-error>
+              </ng-template>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="job_url">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Job URL</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <ng-container *ngIf="VOForm.get('VORows')?.value[element.index].isEditable; else editableModeUrl">
+                <a class="linkedin-link relative z-0" mat-button
+                  (click)="onClick($event, VOForm.get('VORows')?.value[element.index].job_url)"
+                  [href]="VOForm.get('VORows')?.value[element.index].job_url" target="_blank">
+                  <span class="shortened-link relative z-30"
+                    [matTooltip]="VOForm.get('VORows')?.value[element.index].job_url" [matTooltipPosition]="'left'"
+                    style="color:blue"> {{VOForm.get('VORows')?.value[element.index].job_url }}</span> </a>
+              </ng-container>
+              <ng-template #editableModeUrl>
+                <mat-form-field [class.outline-appearance]="VOForm.get('VORows')?.value[element.index].isEditable"
+                  [ngClass]="{'edit-mode': !VOForm.get('VORows')?.value[element.index].isEditable, 'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}"
+                  [class.legacy-appearance]="!VOForm.get('VORows')?.value[element.index].isEditable">
+                  <input matInput type="text" formControlName="job_url"
+                    [readonly]="VOForm.get('VORows')?.value[element.index].isEditable" />
+                </mat-form-field>
+              </ng-template>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="country">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="p-4 hidden md:table-cell">Country</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field [ngClass]="{'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}">
+                <mat-select formControlName="country" [(ngModal)]="VOForm.get('VORows')?.value[i].country">
+                  <mat-option *ngFor="let item of countries;let i=index" [value]="item._id">{{item.title}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="plateform">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Platform</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field [ngClass]="{'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}">
+                <mat-select formControlName="plateform" [(ngModal)]="VOForm.get('VORows')?.value[i].plateform">
+                  <mat-option *ngFor="let item of plateforms;let i=index" [value]="item._id">{{item.title}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="lead_score">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Lead Score</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field [ngClass]="{'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}">
+                <mat-select formControlName="lead_score">
+                  <mat-option *ngFor="let item of leadScores;let i=index" [value]="item._id">{{item.title}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="conversion">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="p-4 hidden md:table-cell">Conversion</th>
+            </thead>
+            <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field [ngClass]="{'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}">
+                <mat-select formControlName="conversion" [(ngModal)]="VOForm.get('VORows')?.value[i].conversion">
+                  <mat-option *ngFor="let item of conversions;let i=index"
+                    [value]="item._id">{{item.title}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="date_time">
+            <thead class="uppercase tracking-wider border-b-2 border-t">
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Date/Time</th>
+            </thead>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field
+                [ngClass]="{'edit-mode': !VOForm.get('VORows')?.value[element.index].isEditable, 'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}">
+                <div class="d-flex date">
+                  <input class="disbled-text time-picker" matInput [matDatepicker]="picker" formControlName="date"
+                    readonly>
+                  <input matInput class="time-picker" type="time" id="appt" name="appt" formControlName="time" />
+                </div>
+                <mat-datepicker-toggle matSuffix [for]="picker"
+                  *ngIf="!VOForm.get('VORows')?.value[element.index].isEditable">
+                  <mat-icon class="date-picker" matDatepickerToggleIcon>today</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </td>
+          </ng-container>
+          <tbody>
+            <tr class="border-b" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr class="border-b" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="border-b" *matNoDataRow>
+              <td [attr.colspan]="displayedColumns.length" class="text-center">
+                <div class="flex flex-col items-center py-4">
+                  <img src="assets/icons/EmptyState.svg" class="mx-auto" alt="Empty State">
+                  <span class="mt-2"> No data matching the search "{{input.value}}" </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+          </ng-container>
+      </form> 
+        <div *ngIf="isLoading" class="overlay">
+          <div style="display: flex; justify-content: center; align-items: center">
+            <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+          </div>
+        </div>
+        <mat-paginator class="pagination" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize"
+          showFirstLastButtons>
+        </mat-paginator>
+  </section>
+</div>
