@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../core/services/users.service';
 import { ToastrService } from 'ngx-toastr';
-import { RoleEnum } from '../core/enums/role.enum';
 import { ConfirmationModelComponent } from '../confirmation-model/confirmation-model.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { SelectionModel } from '@angular/cdk/collections';
