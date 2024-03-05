@@ -51,13 +51,14 @@
             <span class="relative bottom-1">Add New Record</span>
           </button>
         </li>
-        <!-- <li class="relative px-2" data-te-dropdown-ref data-te-dropdown-alignment="end">
-          <button type="button" (click)="openDialog('0ms', '0ms','logout')"
-            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5">
-            <mat-icon class="relative top-1 mr-2 m-0">logout</mat-icon>
-            <span class="relative bottom-1">Logout</span>
+        <li class="relative px-2" data-te-dropdown-ref data-te-dropdown-alignment="end">
+          <button type="button" (click)="generatePdf()"
+            class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-1.5">
+            <mat-icon class="relative top-1 mr-2 m-0">picture_as_pdf</mat-icon>
+            <span class="relative bottom-1">Download as PDF</span>
+
           </button>
-        </li> -->
+        </li>
       </ul>
     </div>
   </nav>
@@ -65,7 +66,6 @@
     <button *ngIf="selection.hasValue()" (click)="openDialog('0ms', '0ms','remove')" type="button"
       class="relative left-11 focus:outline-none text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-1.5">{{selection.selected.length}}
       {{selection.selected.length < 2?'Row':'Rows'}} Delete</button>
-      <!-- <button class="ml-20" mat-button (click)="generatePdf()">Download as PDF</button> -->
         <form [formGroup]="VOForm" autocomplete="off" class="px-2 pt-2" id="htmlData"> 
           <ng-container formArrayName="VORows">
             <table #table mat-table [dataSource]="dataSource" matSort class="overflow-auto" 

@@ -74,20 +74,44 @@ export class UserService {
 
 
     generatePdf(content: string, fileName: string): void {
-        const printWindow:any= window.open('', '_blank');
-        printWindow.document.open();
+        const printWindow: any = window.open('', '_blank');
+         printWindow.document.open();
         printWindow.document.write(`
           <html>
             <head>
               <title>${fileName}</title>
               <style>
-                /* Add your styles here if needed */
+                body {
+                  font-family: Arial, sans-serif;
+                  margin: 20px;
+                  overflow: auto;
+                }
+      
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  margin-bottom: 20px;
+                }
+      
+                th, td {
+                  border: 1px solid #ddd;
+                  padding: 8px;
+                  text-align: left;
+                }
+      
+                th {
+                  background-color: #f2f2f2;
+                }
+                
               </style>
             </head>
             <body>${content}</body>
           </html>
         `);
         printWindow.document.close();
-        printWindow.print();
+              printWindow.onload = () => {
+          printWindow.print();
+        };
       }
+      
 }

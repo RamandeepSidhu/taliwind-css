@@ -605,14 +605,9 @@ export class DashboardComponent implements AfterViewInit {
     }
   }
 
-  generatePdf(): void {
-    const data = this.VOForm.get('VORows')?.value;
-  
-    // Create a new table with the selected columns and table header
+  generatePdf(): void {  
     const filteredTable = document.createElement('table');
-    
-    // Create table header
-    const thead = document.createElement('thead');
+        const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
     headerRow.innerHTML = `
       <th>Name</th>
@@ -620,10 +615,6 @@ export class DashboardComponent implements AfterViewInit {
       <th>Phone</th>
       <th>Linkedin</th>
       <th>Date/Time</th>
-      <th>Platform</th>
-      <th>Lead Score</th>
-      <th>Conversion</th>
-      <th>Country</th>
     `;
     thead.appendChild(headerRow);
     filteredTable.appendChild(thead);
@@ -635,11 +626,7 @@ export class DashboardComponent implements AfterViewInit {
         <td>${row.email !== undefined ? row.email : ''}</td>
         <td>${row.phone !== undefined ? row.phone : ''}</td>
         <td>${row.linkedin !== undefined ? row.linkedin : ''}</td>
-        <td>${row.date_time !== undefined ? row.date_time : ''}</td>
-        <td>${row.plateform !== undefined ? row.plateform : ''}</td>
-        <td>${row.lead_score !== undefined ? row.lead_score : ''}</td>
-        <td>${row.conversion !== undefined ? row.conversion : ''}</td>
-        <td>${row.country !== undefined ? row.country : ''}</td>
+        <td>${row.date} ${row.time !== undefined ? row.time : ''}</td>
       `;
   
       tbody.appendChild(tr);
