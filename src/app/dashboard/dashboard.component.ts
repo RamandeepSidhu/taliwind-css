@@ -606,8 +606,51 @@ export class DashboardComponent implements AfterViewInit {
     }
   }
 
-  downloadAsPDF() {
-    const element = document.getElementById('htmlData'); 
-    html2pdf(element);
+  generatePdf(): void {
+    const data = this.VOForm.get('VORows')?.value;
+  
+    // Create a new table with the selected columns and table header
+    const filteredTable = document.createElement('table');
+    
+    // Create table header
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    headerRow.innerHTML = `
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Linkedin</th>
+      <th>Date/Time</th>
+      <th>Platform</th>
+      <th>Lead Score</th>
+      <th>Conversion</th>
+      <th>Country</th>
+    `;
+    thead.appendChild(headerRow);
+    filteredTable.appendChild(thead);
+      const tbody = document.createElement('tbody');
+    this.users.forEach((row: any) => {
+      const tr = document.createElement('tr');
+            tr.innerHTML = `
+        <td>${row.name !== undefined ? row.name : ''}</td>
+        <td>${row.email !== undefined ? row.email : ''}</td>
+        <td>${row.phone !== undefined ? row.phone : ''}</td>
+        <td>${row.linkedin !== undefined ? row.linkedin : ''}</td>
+        <td>${row.date_time !== undefined ? row.date_time : ''}</td>
+        <td>${row.plateform !== undefined ? row.plateform : ''}</td>
+        <td>${row.lead_score !== undefined ? row.lead_score : ''}</td>
+        <td>${row.conversion !== undefined ? row.conversion : ''}</td>
+        <td>${row.country !== undefined ? row.country : ''}</td>
+      `;
+  
+      tbody.appendChild(tr);
+    });
+  
+    filteredTable.appendChild(tbody);
+    filteredTable.classList.add('your-custom-class');
+    const filteredContent = filteredTable.outerHTML;
+    this.userServices.generatePdf(filteredContent, 'table_data');
   }
+  
+  
 }

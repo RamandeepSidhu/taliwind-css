@@ -21,6 +21,9 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { ClientsDataComponent } from './clients-data/clients-data.component';
 import { BlogComponent } from './blog/blog.component';
 import { HeaderComponent } from './header/header.component';
+import { ContactComponent } from './contact/contact.component';
+import { TeamComponent } from './team/team.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { HeaderComponent } from './header/header.component';
     ClientsDataComponent,
     BlogComponent,
     HeaderComponent,
+    ContactComponent,
+    TeamComponent,
+    NotFoundComponent,
     ],
   imports: [
     CommonModule,

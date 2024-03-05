@@ -1,27 +1,35 @@
-
-<div class="bg-white pt-0 pr-16 pb-0 pl-16"></div>
-<div>
-    <div class="">
-        <nav class="w-full">
-            <div class="sidebar-menu">
-                <a  routerLink="/home"
-                    class="text-gray-600 text-center mr-6 font-medium text-base sidebar-link">Home</a>
-                <a routerLink="/blog"
-                    class="text-gray-600 text-center mr-6 font-medium text-base sidebar-link">Blog</a>
-                <a href="/pricing.html"
-                    class="text-gray-600 text-center mr-6 font-medium text-base sidebar-link">Pricing</a>
-                <a href="/aboutus.html" class="text-gray-600 text-center mr-6 font-medium text-base sidebar-link">About
-                    Us</a>
-               
+    <div class="bg-gray-200">
+        <header>
+            <nav class="bg-gray border-gray-200 px-4 lg:px-6 py-2.5">
+                <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <a class="flex items-center">
+                <img src="../../assets/image1.webp" class="mr-3 h-6 sm:h-9 w-16"/>
+                <span class="self-center text-xl font-semibold whitespace-nowrap">Content Room</span>
+            </a>
+            <div class="flex items-center lg:order-2">
+                <a class="outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5" (click)="openDialog('0ms', '0ms','logout')">Logout</a>
+            </div>
+            <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+                <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                <li>
+                    <a routerLink="/home" routerLinkActive="true" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/blog" routerLinkActive="true" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Blog</a>
+                </li>
+                <li>    
+                    <a routerLink="/Clients" routerLinkActive="true" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Clients</a>
+                </li>
+                <li>
+                    <a routerLink="/team" routerLinkActive="true" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Team</a>
+                </li>
+                <li>
+                    <a routerLink="/contact" routerLinkActive="true" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Contact</a>
+                </li>
+                </ul>
+            </div>
             </div>
         </nav>
+        </header>
     </div>
-    <div class="mobile-sidebar hidden">
-        <div class="flex flex-col">
-            <a routerLink="/home" class="text-gray-600 text-center mt-2 font-medium text-base sidebar-link">Product</a>
-            <a routerLink="/blog" class="text-gray-600 text-center mt-2 font-medium text-base sidebar-link">Features</a>
-            <a href="#" class="text-gray-600 text-center mt-2 font-medium text-base sidebar-link">Pricing</a>
-            <a href="#" class="text-gray-600 text-center mt-2 font-medium text-base sidebar-link">About Us</a>
-        </div>
-    </div>
-</div>
+    
