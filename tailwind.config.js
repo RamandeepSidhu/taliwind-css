@@ -5,11 +5,16 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
+    extend: {
+      willChange: {
+        "left-top": "left, top",
+      },
+    },
     container: {
       center: true,
-      padding: '2rem',
+      padding: "2rem",
       spacing: {
-        '11': '2.75rem',
+        11: "2.75rem",
       },
     },
     extend: {
@@ -27,10 +32,6 @@ module.exports = {
           900: "#1e3a8a",
           950: "#172554",
         },
-      },
-      animation: {
-        wiggle: "wiggle 1s ease-in-out infinite",
-        "spin-slow": "spin 3s linear infinite",
       },
       keyframes: {
         wiggle: {
@@ -75,15 +76,13 @@ module.exports = {
         ],
       },
       gridTemplateColumns: {
-        '16': 'repeat(16, minmax(0, 1fr))',
-        'footer': '200px minmax(900px, 1fr) 100px',
-      }
+        16: "repeat(16, minmax(0, 1fr))",
+        footer: "200px minmax(900px, 1fr) 100px",
+      },
     },
   },
   darkMode: "class",
   plugins: [
-  require("tw-elements/dist/plugin.cjs",
-  '@tailwindcss/typography',
-  '@tailwindcss/forms',
-  '@tailwindcss/container-queries')],
+    require("tw-elements/dist/plugin.cjs", "@tailwindcss/typography", "@tailwindcss/forms", "@tailwindcss/container-queries"),
+  ],
 };
