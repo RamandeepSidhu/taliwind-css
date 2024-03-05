@@ -24,6 +24,8 @@ import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './contact/contact.component';
 import { TeamComponent } from './team/team.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {  RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ContactComponent,
     TeamComponent,
     NotFoundComponent,
+    FooterComponent,
     ],
   imports: [
     CommonModule,
@@ -53,7 +56,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpClientModule,
     ToastrModule.forRoot(),
     MaterialModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   providers: [MaterialModule,{
     provide: HTTP_INTERCEPTORS,

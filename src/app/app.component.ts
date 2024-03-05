@@ -1,43 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl';
-import { environment } from 'src/environments/environment';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  // map: mapboxgl.Map | undefined;
-  // style = 'mapbox://styles/mapbox/streets-v11';
-  // lat: number = 30.2672;
-  // lng: number = -97.7431;
-  // isFullWidth = false;
+export class AppComponent implements OnInit {
+  hideHeader: boolean = false;
 
-  // ngOnInit() {
-  //   this.initializeMap();
-  // }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  // initializeMap() {
-  //   this.map = new mapboxgl.Map({
-  //     accessToken: environment.mapbox.accessToken,
-  //     container: 'map',
-  //     style: this.style,
-  //     zoom: 11,
-  //     center: [this.lng, this.lat]
-  //   });
-
-  //   this.map.on('load', () => {
-  //   });
-  // }
-
-  // toggleWidth() {
-  //   this.isFullWidth = !this.isFullWidth;
-  //   const width = this.isFullWidth ? '100%' : '50%';
-  //   document.getElementById('map')!.style.width = width;
-  //   if (this.map) {
-  //     this.map.resize();
-  //   }
-  // }
-  
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.hideHeader =
+          this.activatedRoute.firstChild?.snapshot.data['hideHeader'];
+      }
+    });
+  }
 }

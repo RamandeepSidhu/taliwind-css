@@ -44,7 +44,7 @@ export class LoginComponent {
             const hasScope = adminLogin.role === ScopeEnum.scope_id1;
             if (hasScope) {
               localStorage.setItem('auth_token', response.token);
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/home']);
             }
           }
           else {

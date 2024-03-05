@@ -18,7 +18,7 @@ export class RedirectToDashboardGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = this.authLoginService.getToken();
     if (token && state.url === '/login') {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/home']);
       return false;
     }
     return true;

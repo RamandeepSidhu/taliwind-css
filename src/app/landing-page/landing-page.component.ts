@@ -7,12 +7,4 @@ import {Component} from '@angular/core';
 export class LandingPageComponent {
   showImageFlag: boolean = false;
   isHidden = false;
-
-  showImage(imageNumber: number): void {
-    this.showImageFlag = true;
-  }
-
-  hideImage(): void {
-    this.showImageFlag = false;
-  }
 }
