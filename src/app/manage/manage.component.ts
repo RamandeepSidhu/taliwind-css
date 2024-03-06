@@ -139,7 +139,4 @@ export class ManageComponent {
   openModel(){
     this.isOpen=true
   }
-  handleFormSubmitted(form: any) {
-    console.log('Form data from modal:', form);
-  }
 }
