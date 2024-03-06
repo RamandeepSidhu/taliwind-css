@@ -177,7 +177,7 @@
   </div>
   <div class="grid grid-cols-3 mt-20">
     <div (mouseenter)="isHidden = !isHidden" (mouseleave)="isHidden = !isHidden">
-      <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+      <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 cursor-default ">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> Noteworthy technology acquisitions 2021 </h5>
         <p class="font-normal text-gray-700"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
           adipisci voluptatem aut officiis doloribus ratione, autem nemo dignissimos qui! Cupiditate repellat amet non
@@ -193,7 +193,7 @@
       </ng-container>
     </div>
     <div (mouseenter)="isHidden = !isHidden" (mouseleave)="isHidden = !isHidden">
-      <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+      <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 cursor-default">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> Noteworthy technology acquisitions 2021 </h5>
         <p class="font-normal text-gray-700"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, sunt
           cupiditate commodi illo quasi illum doloremque harum in qui dolorum nisi. Similique nihil id recusandae
@@ -389,81 +389,15 @@
 
       <div class="flex cursor-pointer items-center justify-between" (click)="toggleAccordion(service)">
         <span class="font-bold">{{ service.title }}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          [class.-rotate-180]="service.expanded" class="h-7 w-3">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+        <svg [class.-rotate-180]="service.expanded" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
         </svg>
-      </div>
+              </div>
   
       <div *ngIf="service.expanded" class="h-auto items-center transition-all duration-1000">
         {{ service.description }}
       </div>
     </div>
     </div>
-    <!-- <div class="m-2 space-y-2">
-      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 text-center">Our services</h2>
-      <div class="group flex flex-col gap-2 rounded-lg bg-gray-100 p-5" tabindex="1">
-        <div class="flex cursor-pointer items-center justify-between">
-          <span class="font-bold"> Fitness Blog </span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="h-7 w-3 transition-all duration-500 group-focus:-rotate-180">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-          </svg>
-        </div>
-        <div
-          class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
-          Elevate your fitness journey with expert tips, workout routines, and healthy living inspiration. Join us on
-          the path to a stronger, happier, and more vibrant you.</div>
-      </div>
-      <div class="group flex flex-col gap-2 rounded-lg bg-gray-100 p-5" tabindex="2">
-        <div class="flex cursor-pointer items-center justify-between">
-          <span class="font-bold"> Inspiration Hub </span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="h-7 w-3 transition-all duration-500 group-focus:-rotate-180">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-          </svg>
-        </div>
-        <div
-          class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
-          Ignite your creativity, motivation, and curiosity. Explore stories of resilience, innovation, and the
-          extraordinary individuals shaping our world. </div>
-      </div>
-      <div class="group flex flex-col gap-2 rounded-lg bg-gray-100 p-5" tabindex="3">
-        <div class="flex cursor-pointer items-center justify-between">
-          <span class="font-bold"> Fashion and Style Blog </span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="h-7 w-3 transition-all duration-500 group-focus:-rotate-180">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-          </svg>
-          
-        </div>
-        <div
-          class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
-          Step into the world of fashion and express your unique style. Get inspired by the latest trends, styling tips,
-          and stories that celebrate individuality. </div>
-      </div>
-      <div class="group flex flex-col gap-2 rounded-lg bg-gray-100 p-5" tabindex="3">
-        <div class="flex cursor-pointer items-center justify-between">
-          <span class="font-bold"> Educational Platform </span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="h-7 w-3 transition-all duration-500 group-focus:-rotate-180">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-          </svg>
-        </div>
-        <div
-          class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
-          Unlock the doors to knowledge with our curated educational content. From fascinating facts to in-depth explorations, we make learning an enriching experience. </div>
-      </div>
-
-      <div class="group flex flex-col gap-2 rounded-lg bg-gray-100 p-5" tabindex="3">
-        <div class="flex cursor-pointer items-center justify-between">
-          <span class="font-bold"> Space Owner </span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="h-7 w-3 transition-all duration-500 group-focus:-rotate-180">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-          </svg>
-        </div>
-        <div
-          class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
-          Unlock the doors to knowledge with our curated educational content. From fascinating facts to in-depth explorations, we make learning an enriching experience. </div>
-      </div>
-    </div> -->
   </section>
 </div>
