@@ -43,3 +43,17 @@ th.mat-mdc-header-cell {
   padding: 0 32px !important;
   color: #667085;
 }
+
+.responsive-width{
+  @media (max-width: 767px) {
+      width: 100px !important;        
+  }
+ 
+}
+.manageRecords{
+  @media (max-width: 481px) {
+    font-size: 12px;
+    display: flex !important;
+    line-height: 1;
+}
+}
