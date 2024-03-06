@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ConfirmPasswordValidator } from '../core/confirm-password.validator';
 
 @Component({
   selector: 'app-register',
@@ -7,41 +8,42 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  registerForm: FormGroup;
+  registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
+    this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       confirm_password:['', [Validators.required]],
-      message: ['', [Validators.required]]
+      message: ['', [Validators.required]],
+      
+    },
+    {
+      validator: ConfirmPasswordValidator("password", "confirm_password")
     });
   }
 
   get password() {
-    return this.registerForm.get('password');
+    return this.registrationForm.get('password');
   }
 
   get email() {
-    return this.registerForm.get('email');
+    return this.registrationForm.get('email');
   }
   get confirm_password(){
-    return this.registerForm.get('confirm_password');
+    return this.registrationForm.get('confirm_password');
 
   }
 
   get message() {
-    return this.registerForm.get('message');
+    return this.registrationForm.get('message');
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      console.log('Form submitted:', this.registerForm.value);
+    if (this.registrationForm.valid) {
+      console.log('Form submitted:', this.registrationForm.value);
     } else {
-      console.log(this.registerForm)
-
-      this.registerForm.markAllAsTouched();
-    }
-    
+      this.registrationForm.markAllAsTouched();
+    }  
   }
 }
