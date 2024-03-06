@@ -157,33 +157,36 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-3 mt-20">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
     <div (mouseenter)="isHidden = !isHidden" (mouseleave)="isHidden = !isHidden">
-      <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 cursor-default ">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> Noteworthy technology acquisitions 2021 </h5>
-        <p class="font-normal text-gray-700"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+      <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 cursor-default">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
+        <p class="font-normal text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
           adipisci voluptatem aut officiis doloribus ratione, autem nemo dignissimos qui! Cupiditate repellat amet non
-          dolorum accusamus beatae corrupti temporibus, nulla sit? </p>
+          dolorum accusamus beatae corrupti temporibus, nulla sit?</p>
       </a>
     </div>
+  
     <div>
       <ng-container *ngIf="isHidden">
         <a class="block max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-          <h4 class="tracking-tight text-gray-900">Comming Soon ...</h4>
-          <img src="../../assets/image1.webp" class="object-fill justify-center h-52 w-96" />
+          <h4 class="tracking-tight text-gray-900">Coming Soon ...</h4>
+          <img src="../../assets/image1.webp" class="object-fill justify-center h-52 w-full md:w-96" />
         </a>
       </ng-container>
     </div>
+  
     <div (mouseenter)="isHidden = !isHidden" (mouseleave)="isHidden = !isHidden">
       <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 cursor-default">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> Noteworthy technology acquisitions 2021 </h5>
-        <p class="font-normal text-gray-700"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, sunt
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
+        <p class="font-normal text-gray-700">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, sunt
           cupiditate commodi illo quasi illum doloremque harum in qui dolorum nisi. Similique nihil id recusandae
-          obcaecati. Nemo eum laudantium culpa! </p>
+          obcaecati. Nemo eum laudantium culpa!</p>
       </a>
     </div>
   </div>
-  <section class="bg-white">
+  
+  <section class="bg-white mt-5">
     <div class="px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
         <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900"> Upgrade your plan for access our platform
