@@ -164,7 +164,7 @@
           </ng-container>
           <ng-container matColumnDef="linkedin">
             <thead class="uppercase tracking-wider border-b-2 border-t">
-              <th mat-header-cell *matHeaderCellDef scope="col" class="p-4 hidden md:table-cell">Linkedin</th>
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Linkedin</th>
             </thead>
             <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
               <ng-container *ngIf="VOForm.get('VORows')?.value[element.index].isEditable; else editableMode">
@@ -212,7 +212,7 @@
           </ng-container>
           <ng-container matColumnDef="country">
             <thead class="uppercase tracking-wider border-b-2 border-t">
-              <th mat-header-cell *matHeaderCellDef scope="col" class="p-4 hidden md:table-cell">Country</th>
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Country</th>
             </thead>
             <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
               <mat-form-field [ngClass]="{'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}">
@@ -248,7 +248,7 @@
           </ng-container>
           <ng-container matColumnDef="conversion">
             <thead class="uppercase tracking-wider border-b-2 border-t">
-              <th mat-header-cell *matHeaderCellDef scope="col" class="p-4 hidden md:table-cell">Conversion</th>
+              <th mat-header-cell *matHeaderCellDef scope="col" class="px-6 py-2 border-x">Conversion</th>
             </thead>
             <td class="px-6 py-2 border-x" mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
               <mat-form-field [ngClass]="{'edit-off': VOForm.get('VORows')?.value[element.index].isEditable}">
