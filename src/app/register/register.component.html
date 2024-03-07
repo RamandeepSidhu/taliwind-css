@@ -37,11 +37,7 @@
             </div>
           </div>
           <div>
-            <label
-              for="password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Password</label
-            >
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
             <input
               formControlName="password"
               type="password"
@@ -51,19 +47,13 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required=""
             />
-            <div
-              *ngIf="password?.invalid && password?.touched"
-              class="text-red-500"
-            >
+            <div  class="text-red-500" *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)">
               Password is required
             </div>
           </div>
+          
           <div>
-            <label
-              for="confirm-password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Confirm password</label
-            >
+            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
             <input
               formControlName="confirm_password"
               type="password"
@@ -73,16 +63,10 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
             />
-            <div
-              class="text-red-500"
-              *ngIf="registrationForm.get('confirm_password')?.errors?.['required']"
-            >
+            <div  class="text-red-500" *ngIf="registrationForm.get('confirm_password')?.errors?.['required'] && (registrationForm.get('confirm_password')?.touched || registrationForm.get('confirm_password')?.dirty)">
               Confirm Password is required
             </div>
-            <div
-              class="text-red-500"
-              *ngIf="registrationForm.get('confirm_password')?.errors?.['confirmPasswordValidator']"
-            >
+            <div  class="text-red-500" *ngIf="registrationForm.get('confirm_password')?.errors?.['confirmPasswordValidator'] && (registrationForm.get('confirm_password')?.touched || registrationForm.get('confirm_password')?.dirty)">
               Confirm Password didn't match.
             </div>
           </div>
