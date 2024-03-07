@@ -44,16 +44,25 @@ th.mat-mdc-header-cell {
   color: #667085;
 }
 
-.responsive-width{
+.responsive-width {
   @media (max-width: 767px) {
-      width: 100px !important;        
+    width: 100px !important;
   }
- 
 }
-.manageRecords{
+.manageRecords {
   @media (max-width: 481px) {
     font-size: 12px;
     display: flex !important;
     line-height: 1;
+  }
 }
+.addNewRow {
+  @media (max-width: 481px) {
+    position: relative;
+    width: 12px;
+    .addIcon {
+      position: relative;
+      right: 11px;
+    }
+  }
 }
