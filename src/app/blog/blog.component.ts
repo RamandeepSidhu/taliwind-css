@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-blog',
@@ -44,4 +45,8 @@ export class BlogComponent {
       content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     }
   ];
+  ngOnInit(): void {
+    initFlowbite();
+  }
+  
 }

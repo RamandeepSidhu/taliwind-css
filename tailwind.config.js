@@ -3,6 +3,8 @@ module.exports = {
   content: [
     "./src/**/*.{html,ts}",
     "./node_modules/tw-elements/dist/js/**/*.js",
+    "./node_modules/flowbite/**/*.js" // add this line
+
   ],
   theme: {
     extend: {
@@ -83,6 +85,6 @@ module.exports = {
   },
   darkMode: "class",
   plugins: [
-    require("tw-elements/dist/plugin.cjs", "@tailwindcss/typography", "@tailwindcss/forms", "@tailwindcss/container-queries"),
+    require("tw-elements/dist/plugin.cjs", "@tailwindcss/typography", "@tailwindcss/forms", "@tailwindcss/container-queries",'flowbite/plugin'),
   ],
 };
