@@ -130,3 +130,8 @@ white-space: nowrap !important;
 .cdk-overlay-container {
   z-index: 1041;
 }
+.cdk-overlay-pane{
+  @media (max-width: 481px) {
+    width: 200px !important;
+  }
+}
