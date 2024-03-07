@@ -1,31 +1,31 @@
 <!-- <div class="conatiner-fluid"> -->
 <div class="d-flex justify-content-left ml-2 mb-3 mt-2">
   <button
-    class="text-white bg-green-800 hover:bg-green-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-1.5"
+    class="leading text-white bg-green-800 hover:bg-green-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-1.5"
     (click)="openModel()">
-    <mat-icon class="mt-1">add</mat-icon>
+    <mat-icon>add</mat-icon>
     <span class="addRecords relative bottom-1">Add New Record</span>
   </button>
 </div>
 <div class="mt-2">
   <ul class="ml-2 mb-3 flex list-none flex-row flex-wrap" id="myTab" role="tablist" data-te-nav-ref>
     <li class="me-2" role="presentation" (click)="tabClick('country')">
-      <button [class.active]="title === 'Country' || title === 'country'" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100  rounded-lg text-xs py-2.5 px-2  mb-2" id="country-tab" type="button"
+      <button [class.active]="title === 'Country' || title === 'country'" class="tab text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100  rounded-lg text-xs py-2.5 px-2  mb-2" id="country-tab" type="button"
         data-te-toggle="pill" data-te-target="#country" data-te-nav-active role="tab" aria-controls="country"
         aria-selected="true"> Country </button>
     </li>
     <li class="me-2" role="presentation" (click)="tabClick('platform')">
-      <button [class.active]="title === 'platform'"  class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-xs py-2.5 mb-2" id="platform-tab"
+      <button [class.active]="title === 'platform'"  class="tab text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-xs py-2.5 mb-2" id="platform-tab"
         type="button" role="tab" aria-controls="platform" aria-selected="false" data-te-toggle="pill"
         data-te-target="#platform"> Platform </button>
     </li>
     <li class="me-2" role="presentation" (click)="tabClick('leadscore')">
-      <button [class.active]="title === 'leadscore'"  class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-xs py-2.5  mb-2" id="leadscore-tab"
+      <button [class.active]="title === 'leadscore'"  class="tab text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-xs py-2.5  mb-2" id="leadscore-tab"
         type="button" role="tab" aria-selected="false" aria-controls="leadscore" data-te-toggle="pill"
         data-te-target="#leadscore"> Lead Score </button>
     </li>
     <li class="me-2" role="presentation" (click)="tabClick('conversion')">
-      <button [class.active]="title === 'conversion'" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-xs py-2.5  mb-2" id="conversion-tab"
+      <button [class.active]="title === 'conversion'" class="tab text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-sm px-2 rounded-lg text-xs py-2.5  mb-2" id="conversion-tab"
         type="button" role="tab" aria-controls="conversion" aria-selected="false" data-te-toggle="pill"
         data-te-target="#conversion"> Conversion </button>
     </li>
