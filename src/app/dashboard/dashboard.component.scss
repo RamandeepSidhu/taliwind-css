@@ -46,14 +46,23 @@ th.mat-mdc-header-cell {
 
 .responsive-width {
   @media (max-width: 767px) {
-    width: 100px !important;
+    width: 152px !important;
   }
 }
+.dropdown {
+  @media (max-width: 767px) {
+    width: 152px !important;
+  }
+}
+
 .manageRecords {
   @media (max-width: 481px) {
-    font-size: 12px;
     display: flex !important;
     line-height: 1;
+    width: 36px;
+    position: relative;
+    left: -5px;
+    font-size: 12px;
   }
 }
 .addNewRow {
@@ -65,5 +74,18 @@ th.mat-mdc-header-cell {
       right: 11px;
       top: 3px;
     }
+  }
+}
+ul.list-none {
+  @media (max-width: 481px) {
+    margin-left: -24px;
+  }
+}
+.applybtn {
+  position: relative;
+    left: 55px;
+  @media (max-width: 481px) {
+    position: relative;
+    left: 25px;
   }
 }

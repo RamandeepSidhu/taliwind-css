@@ -21,22 +21,23 @@
         </form>
       </div>
       <!-- Right elements -->
-      <ul class="list-none ml-auto flex flex-row pl-0 md:pl-4 sm:pl-0 mt-5" data-te-navbar-nav-ref>
+      <ul class="list-none flex flex-row pl-0 md:pl-4 sm:pl-0 mt-5" data-te-navbar-nav-ref>
         <li class="px-2" data-te-nav-item-ref>
           <button type="button"
-            class="focus:outline-none text-gray-900  bg-white hover:bg-gray-100 border border-gray-300 font-medium rounded-lg text-sm">
+            class="dropdown focus:outline-none text-gray-900  bg-white hover:bg-gray-100 border border-gray-300 font-medium rounded-lg text-sm">
             <mat-form-field class="responsive-width">
               <mat-select [formControl]="toppings" multiple>
                 <mat-option *ngFor="let column of usersTableColumn" [value]="column"
                   (onSelectionChange)="onChangeColumn($event, column)">{{column?.label}}</mat-option>
-                <button type="button"
-                  class="relative left-14	w-24 text-white bg-purple-700 hover:bg-purple-800 focus:outline-none  font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 inline-flex justify-center"
+                  <button type="button"
+                  class="applybtn w-24 text-white bg-purple-700 hover:bg-purple-800 focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 inline-flex justify-center"
                   (click)="disabledColumnField()">Apply</button>
+          
               </mat-select>
             </mat-form-field>
           </button>
         </li>
-        <li class="px-2" data-te-nav-item-ref>
+        <li class="px-1" data-te-nav-item-ref>
           <button type="button"
             class="focus:outline-none text-white bg-purple-500 hover:bg-purple-400  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             (click)="openManageRecords()">
