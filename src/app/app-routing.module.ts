@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { TeamComponent } from './team/team.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [RedirectToDashboardGuard],data: { hideHeader: true }  },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent,canActivate: [AuthGuard]},
   { path: 'contact', component: ContactComponent,canActivate: [AuthGuard]},
   { path: 'team', component: TeamComponent,canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent},
 

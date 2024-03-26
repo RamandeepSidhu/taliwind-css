@@ -26,6 +26,7 @@ import { TeamComponent } from './team/team.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {  RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FooterComponent } from './footer/footer.component';
     TeamComponent,
     NotFoundComponent,
     FooterComponent,
+    ProfileComponent,
     ],
   imports: [
     CommonModule,

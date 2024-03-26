@@ -8,9 +8,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   hideHeader: boolean = false;
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
-
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

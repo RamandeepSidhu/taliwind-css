@@ -3,14 +3,37 @@ module.exports = {
   content: [
     "./src/**/*.{html,ts}",
     "./node_modules/tw-elements/dist/js/**/*.js",
-    "./node_modules/flowbite/**/*.js" // add this line
+    "./node_modules/flowbite/**/*.js" 
 
   ],
   theme: {
+    screens: {
+      xs: '320px',
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
     extend: {
+      animation: {
+        'spin-slow': 'spin 10s linear infinite',
+      },
       willChange: {
         "left-top": "left, top",
       },
+      animation: {
+        'marquee': 'marquee var(--marquee-duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--marquee-duration) linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '100%': { transform: 'translateX(-50%)' }
+        },
+        "marquee-vertical": {
+          '100%': { transform: 'translateY(-50%)' }
+        }
+      }
+    
     },
     container: {
       center: true,
