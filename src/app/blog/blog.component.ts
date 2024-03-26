@@ -54,7 +54,7 @@ export class BlogComponent {
       
       ScrollTrigger.create({
         trigger: elem,
-        markers: true,
+        // markers: true,
         onEnter: () => { this.animateFrom(elem) },
         onEnterBack: () => { this.animateFrom(elem, -1) },
         onLeave: () => { this.hide(elem) }
