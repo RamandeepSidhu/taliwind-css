@@ -41,31 +41,114 @@
   </button>
 </div>
 
-<section class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-
+<section class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+  <div class="cInnerContent">
+    <h2 class="header-section gs_reveal ipsType_center text-4xl text-gray-800">Our Recent Blogs</h2>
+    <div class="">
+      <div class="text-center mb-16">
+        <p class="header-section gs_reveal ipsType_center mt-4 text-gray-600">
+          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+        </p>
+      </div>
   
-  <div class="">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-800">Our Recent Blogs</h2>
-      <p class="mt-4 text-gray-600">
-        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
-      </p>
-    </div>
-
-    <div class="flex flex-wrap -mx-4">
-      <div *ngFor="let blog of blogs" class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
-        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-          <img [src]="blog.image" alt="Blog Image" class="w-full h-48 object-cover object-center">
-          <div class="p-6">
-            <span class="inline-block mb-2 text-xs font-semibold text-gray-600">{{ blog.date }}</span>
-            <h3 class="mb-4 text-xl font-semibold">
-              <a href="#" class="hover:text-primary">{{ blog.title }}</a>
-            </h3>
-            <p class="text-gray-700">{{ blog.content }}</p>
+      <div class="flex flex-wrap -mx-4">
+        <div *ngFor="let blog of blogs" class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+          <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+            <img [src]="blog.image" alt="Blog Image" class="w-full h-48 object-cover object-center">
+            <div class="p-6">
+              <span class="inline-block mb-2 text-xs font-semibold text-gray-600">{{ blog.date }}</span>
+              <h3 class="mb-4 text-xl font-semibold">
+                <a href="#" class="hover:text-primary">{{ blog.title }}</a>
+              </h3>
+              <p class="text-gray-700">{{ blog.content }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="features mt-20">
+      <div class="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
+        <div class="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromLeft">
+          <div class="card">
+            <img width="479" src="../../assets/about.jpg" alt="">
+          </div>
+        </div>
   
+        <div class="ipsGrid_span7 ipsType_left">
+          <h2 class="heading_large gs_reveal">Space <strong>Owner</strong></h2>
+          <p class="gs_reveal"><a href="">DrawSVGPlugin</a> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit veniam, velit tenetur dolorem fugit inventore officia architecto eligendi mollitia ullam labore totam molestias facilis fugiat. Magni facere ea excepturi aliquam!</p>
+        </div>
+      </div>
+  
+      <div class="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
+        <div class="ipsGrid_span7 ipsType_right">
+          <h2 class="heading_large gs_reveal">5 Star  <strong>Hotel</strong> ***</h2>
+          <p class="gs_reveal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, repellat dolorum. Tempore eius laboriosam debitis, saepe quam, molestias ducimus amet consequatur vero perferendis qui, iure ratione doloremque officia a porro.</p>
+        </div>
+  
+        <div class="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromRight">
+          <div class="card">
+            <img width="479" src="https://picsum.photos/479/479?index=2" alt="">
+          </div>
+        </div>
+      </div>
+  
+      <div class="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
+        <div class="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromLeft">
+          <div class="card">
+            <img width="479" src="https://picsum.photos/479/479?index=3" alt="">
+          </div>
+        </div>
+  
+        <div class="ipsGrid_span7 ipsType_left">
+          <h2 class="heading_large gs_reveal">Space  <strong>Owner </strong> team</h2>
+          <p class="gs_reveal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, repudiandae! Eius rerum animi expedita minima non totam, consequuntur dignissimos perspiciatis facere dolores voluptate impedit aliquam, vel odio! Ipsum, quidem doloremque.</p>
+        </div>
+      </div>
+  
+      <div class="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
+        <div class="ipsGrid_span7 ipsType_right">
+          <h2 class="heading_large gs_reveal"><strong>Teasting </strong> Team</h2>
+          <p class="gs_reveal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quisquam iure sapiente eum soluta! Inventore similique quas esse perspiciatis ducimus dolor quaerat, nihil dolores ut. Ipsa laboriosam vel officia ad.</p>
+        </div>
+  
+        <div class="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromRight">
+          <div class="card">
+            <img width="479" src="https://picsum.photos/479/479?index=4" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
+        <div class="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromLeft">
+          <div class="card">
+            <img width="479" src="https://picsum.photos/479/479?index=1" alt="">
+          </div>
+        </div>
+  
+        <div class="ipsGrid_span7 ipsType_left">
+          <h2 class="heading_large gs_reveal">Space <strong>Owner</strong></h2>
+          <p class="gs_reveal"><a href="">DrawSVGPlugin</a> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit veniam, velit tenetur dolorem fugit inventore officia architecto eligendi mollitia ullam labore totam molestias facilis fugiat. Magni facere ea excepturi aliquam!</p>
+        </div>
+      </div>
+  
+      <div class="feature ipsSpacer_bottom_double ipsGrid ipsGrid_collapsePhone">
+        <div class="ipsGrid_span7 ipsType_right">
+          <h2 class="heading_large gs_reveal">Meeting Hall</h2>
+          <p class="gs_reveal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, repellat dolorum. Tempore eius laboriosam debitis, saepe quam, molestias ducimus amet consequatur vero perferendis qui, iure ratione doloremque officia a porro.</p>
+        </div>
+  
+        <div class="featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromRight">
+          <div class="card">
+            <img width="479" src="https://picsum.photos/479/479?index=2" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+
 </section>
+
+
+
