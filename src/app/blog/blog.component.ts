@@ -49,19 +49,24 @@ export class BlogComponent {
   ngOnInit(): void {
     initFlowbite();
     gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray(".gs_reveal").forEach((elem :any) => {
+    
+  }
+  ngAfterViewInit(): void {
+    this.initScrollAnimations();
+  }
+  initScrollAnimations(): void {
+    gsap.utils.toArray(".gs_reveal").forEach((elem: any) => {
       this.hide(elem);
-      
+
       ScrollTrigger.create({
         trigger: elem,
-        // markers: true,
+        markers: true,
         onEnter: () => { this.animateFrom(elem) },
         onEnterBack: () => { this.animateFrom(elem, -1) },
         onLeave: () => { this.hide(elem) }
       });
     });
   }
-   
     animateFrom(elem: HTMLElement, direction: number = 1) {
       direction = direction || 1;
       let x = 0,
