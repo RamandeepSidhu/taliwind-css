@@ -411,4 +411,19 @@
       </div>
     </div>
   </div>
+
+
+  <form (ngSubmit)="createUser(emailInput.value, displayNameInput.value, advertiserIdInput.value)">
+    <label>Email Address:</label>
+    <input type="email" #emailInput required>
+  
+    <label>Display Name:</label>
+    <input type="text" #displayNameInput required>
+  
+    <label>Advertiser ID:</label>
+    <input type="text" #advertiserIdInput required>
+  
+    <button type="submit">Create User</button>
+  </form>
+  
 </div>

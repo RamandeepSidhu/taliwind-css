@@ -1,4 +1,5 @@
 import {Component, HostListener} from '@angular/core';
+import { UserService } from '../core/services/users.service';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -37,5 +38,20 @@ export class LandingPageComponent {
   }
  ngOninit() {
   
+ }
+ constructor(private userService: UserService) { }
+
+ createUser(email: string, displayName: string, advertiserId: string): void {
+   this.userService.createUser(email, displayName, advertiserId)
+     .subscribe(
+       (response) => {
+         console.log('User created successfully:', response);
+         // Handle success response
+       },
+       (error) => {
+         console.error('Error creating user:', error);
+         // Handle error response
+       }
+     );
  }
 }

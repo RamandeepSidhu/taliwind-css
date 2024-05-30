@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 
 export class UserService {
     private apiUrl = `${environment.apiUrl}/api`;
+    private dvUrl = 'https://cors-anywhere.herokuapp.com/https://api.displayvideo.com/v1';
 
     constructor(private http: HttpClient) { }
     getUsers(params?: any): Observable<any> {
@@ -113,5 +114,17 @@ export class UserService {
           printWindow.print();
         };
       }
-      
+      createUser(email: string, displayName: string, advertiserId: string): Observable<any> {
+        const user = {
+          email: email,
+          displayName: displayName,
+          assignedUserRoles: [
+            {
+              advertiserId: advertiserId,
+              userRole: 'STANDARD'
+            }
+          ]
+        };
+        return this.http.post<any>(`${this.dvUrl}/users`, user);
+      }
 }
